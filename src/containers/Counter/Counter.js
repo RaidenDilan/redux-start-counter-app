@@ -41,7 +41,7 @@ class Counter extends Component {
       default:
         this.setState((prevState) => {
           return {
-            counter: prevState.counter // ??? Is This IMMUTABLE ???
+            counter: prevState.counter
           };
         });
     }
