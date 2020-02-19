@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import { connect } from 'react-redux'; // HOC
 import CounterControl from '../../components/CounterControl/CounterControl';
 import CounterOutput from '../../components/CounterOutput/CounterOutput';
 
@@ -50,7 +50,7 @@ class Counter extends Component {
   render () {
     return (
       <div>
-        <CounterOutput value={ this.state.counter } />
+        <CounterOutput value={ this.props.ctr } />
         <CounterControl label='Increment' clicked={ () => this.counterChangedHandler('inc') } />
         <CounterControl label='Decrement' clicked={ () => this.counterChangedHandler('dec') }  />
         <CounterControl label='Add 5' clicked={ () => this.counterChangedHandler('add', 5) }  />
@@ -60,4 +60,13 @@ class Counter extends Component {
   }
 }
 
-export default Counter;
+// run this code block after our class component
+const mapStateToProps = state => {
+  return {
+    // we give access to our counter in our state from redux to our Counter class Component
+    ctr: state.counter // ctr => counter
+  };
+};
+
+// connect is a function that return a .H.O.C.
+export default connect(mapStateToProps)(Counter);
