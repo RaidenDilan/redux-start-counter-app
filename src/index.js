@@ -9,6 +9,8 @@ import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
 const logger = store => {
   return next => {
     return action => {
@@ -25,7 +27,7 @@ const rootReducer = combineReducers({
   res: resultReducer
 });
 
-const store = createStore(rootReducer, applyMiddleware(logger));
+const store = createStore(rootReducer, composeEnhancers(applyMiddleware(logger)));
 
 ReactDOM.render(<Provider store={ store }><App /></Provider>, document.getElementById('root'));
 registerServiceWorker();
