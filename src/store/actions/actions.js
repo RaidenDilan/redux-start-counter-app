@@ -31,10 +31,17 @@ export const subtract = (value) => {
   };
 };
 
-export const storeResult = (res) => {
+export const saveResult = (res) => {
   return {
     type: STORE_RESULT,
     result: res
+  };
+};
+
+// Handling Asynchronous Code using redux-thunk pronounced as 'funk'
+export const storeResult = (res) => {
+  return function(dispatch) {
+    setTimeout(() => dispatch(saveResult(res)), 2000);
   };
 };
 
