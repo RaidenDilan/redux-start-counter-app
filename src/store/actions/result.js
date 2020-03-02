@@ -10,7 +10,7 @@ export const saveResult = (res) => {
 
 // Handling Asynchronous Code using redux-thunk pronounced as 'funk'
 export const storeResult = (res) => {
-  return function(dispatch, getState) { // getState - from redux-thunk
+  return function(dispatch, getState) { // use getState method - from redux-thunk to get old result prior to saving new result
     // const oldCounter = getState().ctr.counter;
     // console.log('[oldCounter]', oldCounter);
     setTimeout(() => dispatch(saveResult(res)), 2000);
